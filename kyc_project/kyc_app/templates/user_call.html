@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Airpay | KYC Video Call</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #e9eff6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+        }
+
+        video {
+            width: 500px;
+            height: 380px;
+            margin-top: 2rem;
+            border: 2px solid #0072ff;
+            border-radius: 8px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2>Airpay | KYC Verification</h2>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <video id="localVideo" autoplay playsinline muted></video>
+
+    <div class="controls">
+        <button onclick="startCall()">Start Call</button>
+        <button onclick="stopCall()">Stop Call</button>
+    </div>
+    {% if request.user.username != 'admin' %}
+    <p><a href="{% url 'video_room' request.user.username %}">Join Call Room</a></p>
+    {% endif %}
+
+    <script src="/static/js/webrtc.js"></script>
+</body>
+
+</html>
